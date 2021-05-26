@@ -1,0 +1,47 @@
+//general
+@import 'vars.scss';
+@import '~@fontsource/montserrat/index.css';  
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  font-family: 'Montserrat', 'sans-serif' ;
+}
+
+header{
+  background: white;
+  height: 100px;
+}
+
+main{
+  background: $brand-color2;
+  min-height: 100px;
+  color: white;
+}
+
+footer{
+  background: #303030;
+  min-height: 100px;
+}
+
+ul{
+  list-style: none;
+}
+
+a{
+  text-decoration: none;
+  cursor: pointer;
+}
+
+button{
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+input{
+  outline: none;
+}
