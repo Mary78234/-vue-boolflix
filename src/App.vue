@@ -3,7 +3,11 @@
     <div id="app">
       
       <Header />
-      <Main />
+      <Main 
+        @startSearchFilm="startSearchFilm"
+        @startSearchTv="startSearchTv"
+        :filteredList='filteredList'
+      />
 
     </div>
   </body>
@@ -16,6 +20,7 @@ import Main from './components/Main.vue';
 
 export default {
   name: 'App',
+  
   components: {
     Header,
     Main
@@ -23,29 +28,61 @@ export default {
   data(){
     return{
       axios,
-      apiURL: 'https://api.themoviedb.org/3/search/movie',
+      apiURLmovie: 'https://api.themoviedb.org/3/search/movie',
+      apiURLtv: 'https://api.themoviedb.org/3/search/tv',
       apiKey: 'c2ea226cb0288d7001760b50ed3a2e3f',
-      query: 'lupen',
-      film: []
+      query: '',
+      List: []
+    }
+  },
+  computed:{
+    filteredList(){
+      return this.List;
     }
   },
   created(){
-    axios.get(this.apiURL,{
-        params:{
-          api_key: this.apiKey,
-          query: this.query,
-          language: 'it-IT'
-        }
-      })
-      .then(resp =>{
-        console.log(resp);
-      })
-      .catch(err => {
-        console.log(err);
-      })
-  }/* ,
+
+  },
   methods:{
-    searchFilm(){
+    startSearchFilm(filmToSearch){
+      this.query = filmToSearch;
+      if(this.query !== ''){
+        axios.get(this.apiURLmovie,{
+          params:{
+            api_key: this.apiKey,
+            query: this.query,
+            language: 'it-IT'
+          }
+        })
+        .then(resp =>{
+          this.List = resp.data.results;
+          console.log(this.List);
+        })
+        .catch(err => {
+          console.log(err);
+        })
+      }
+    },
+    startSearchTv(TvToSearch){
+      this.query = TvToSearch;
+      if(this.query !== ''){
+        axios.get(this.apiURLtv,{
+          params:{
+            api_key: this.apiKey,
+            query: this.query,
+            language: 'it-IT'
+          }
+        })
+        .then(resp =>{
+          this.List = resp.data.results;
+          console.log(this.List);
+        })
+        .catch(err => {
+          console.log(err);
+        })
+      }
+    },
+    /* startSearch(){
       axios.get(this.apiURL,{
         params:{
           api_key: this.apiKey,
@@ -54,14 +91,15 @@ export default {
         }
       })
       .then(resp =>{
-        console.log(resp);
+        this.List = resp.data.results;
+        console.log(this.List);
       })
       .catch(err => {
         console.log(err);
       })
-    }
+    } */
 
-  } */
+  }
 
 }
 </script>
