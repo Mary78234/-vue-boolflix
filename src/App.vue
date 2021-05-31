@@ -6,6 +6,7 @@
 
       <h1 v-if="results.movie.length === 0 && results.tv.length === 0 ">
         Nessun risultato trovato
+        
       </h1>
 
       <Main 
