@@ -1,12 +1,14 @@
 <template>
-  <main class="container">
+  <main>
   
     <h1> {{titles[type]}} </h1>
     <p>------------------------------</p>
-    <Card 
-    v-for="card in list"
-    :key="card.id"
-    :card="card"/>
+    <div class="container">
+      <Card 
+      v-for="card in list"
+      :key="card.id"
+      :card="card"/>
+    </div>
 
   </main>
 </template>
@@ -37,5 +39,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  main{
+    text-align: center;
+  }
+  .container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+  }
 
 </style>
