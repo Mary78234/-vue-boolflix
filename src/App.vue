@@ -83,8 +83,8 @@ export default {
         })
         .then(res => {
           this.results[type] = res.data.results;
-          console.log("film: ", this.results.movie);
-          console.log("serie tv: ", this.results.tv);
+          //console.log("film: ", this.results.movie);
+          //console.log("serie tv: ", this.results.tv);
         })
         .catch(err => {
           console.log(err);

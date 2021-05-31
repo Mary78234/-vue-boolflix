@@ -1,43 +1,42 @@
 <template>
-  <div class="box"> 
-    <div class="flip-card">
+  <div class="flip-card">
 
-      <!-- flip card inner -->
-      <div class="flip-card-inner">
+    <!-- flip card inner -->
+    <div class="flip-card-inner">
 
-        <div class="flip-card-front">
-          <img class="cover-img" :src="imageUrl+card.poster_path" alt="">
-        </div>
-
-        <!-- flip card back -->
-        <div class="flip-card-back">
-            <ul class="list-group">
-
-              <li class="list-group-item">Titolo: {{card.title || card.name}} </li>
-              <li class="list-group-item">Titolo originale: {{card.original_title || card.original_name}} </li>
-              <li class="list-group-item">
-                <span v-if="getFlags(card.original_language)">
-                  Language: <img class="img-flag" :src="flagUrl" alt="">
-                </span>
-                <span v-else>Language: {{card.original_language}} </span>
-              </li>
-              <li class="list-group-item">
-                Voto:  
-                <span v-if="starScore(card.vote_average)">
-                  <i class="fas fa-star"
-                  v-for="star in numStars" :key="star"></i>
-                </span>
-                <span v-else> not scored </span>
-              </li>
-
-            </ul>
-        </div>
-        <!-- flip card back -->
-
+      <div class="flip-card-front">
+        <img  class="cover-img" :src="imageUrl+card.poster_path" alt="">
+        <span>Immagine non presente</span>
       </div>
-      <!-- flip card inner -->
+
+      <!-- flip card back -->
+      <div class="flip-card-back">
+        <ul class="list-group">
+
+          <li class="list-group-item">Titolo: {{card.title || card.name}} </li>
+          <li class="list-group-item">Titolo originale: {{card.original_title || card.original_name}} </li>
+          <li class="list-group-item">
+            <span v-if="getFlags(card.original_language)">
+              Language: <img class="img-flag" :src="flagUrl" :alt="card.title || card.name">
+            </span>
+            <span v-else>Language: {{card.original_language}} </span>
+          </li>
+          <li class="list-group-item">
+            Voto:  
+            <span v-if="starScore(card.vote_average)">
+              <i class="fas fa-star"
+              v-for="star in numStars" :key="star"></i>
+            </span>
+            <span v-else> not scored </span>
+          </li>
+
+        </ul>
+      </div>
+      <!-- flip card back -->
 
     </div>
+    <!-- flip card inner -->
+
   </div>
 </template>
 
@@ -135,7 +134,15 @@ export default {
     background-color: black;
     color: white;
     transform: rotateY(180deg);
-    margin: 80px 20x;
+    padding: 80px 20x;
+    ul{
+      text-align: left;
+      margin: 40px 20px;
+    }
+  }
+
+  .img-flag{
+    vertical-align: middle;
   }
 
 </style>
