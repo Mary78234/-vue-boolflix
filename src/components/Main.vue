@@ -2,7 +2,7 @@
   <main class="container">
   
     <h1> {{titles[type]}} </h1>
-
+    <p>------------------------------</p>
     <Card 
     v-for="card in list"
     :key="card.id"
@@ -37,8 +37,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  main.container{
-    background-color: bisque;
-  }
 
 </style>

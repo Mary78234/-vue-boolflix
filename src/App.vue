@@ -4,10 +4,12 @@
       
       <Header @startSearch="startSearch"/>
 
-      <h1 v-if="results.movie.length === 0 && results.tv.length === 0 ">
-        Nessun risultato trovato
-        
-      </h1>
+      <main class="container" 
+      v-if="results.movie.length === 0 && results.tv.length === 0 ">
+        <h1>
+          Nessun risultato trovato
+        </h1>
+      </main>
 
       <Main 
       v-if="results.movie.length > 0" 
