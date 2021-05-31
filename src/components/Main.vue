@@ -1,66 +1,44 @@
 <template>
-  <main>
-    <h1>Lista film</h1>
-    <input type="text" 
-      v-model.trim="searchText"
-      placeholder="Inserire Film da cercare"
-    >
-    <button @click="$emit('startSearchFilm', searchText)">
-      Cerca Film
-    </button>
-    <button  @click="$emit('startSearchTv', searchText)">
-      Cerca Serie TV
-    </button>
+  <main class="container">
+  
+    <h1> {{titles[type]}} </h1>
 
-    <ul
-      
-      v-for="(value, id) in filteredList"
-      :key="id"
-    >
-      <li>---------------Film-----------------</li>
-      <li>Titolo: {{value.title}} </li>
-      <li>Titolo originale: {{value.original_title}} </li>
-      <li>Lingua: {{value.original_language}} </li>
-      <li>Voto: {{value.vote_average}} </li>
-      <li>--------------------------------------</li>
-      
-    </ul>
-
-    <!-- <ul v-show="!FilmTV" 
-      v-for="(value, id) in filteredList"
-      :key="id"
-    >
-      <li>---------------Serie TV-----------------</li>
-      <li>Titolo: {{value.name}} </li>
-      <li>Titolo originale: {{value.original_name}} </li>
-      <li>Lingua: {{value.original_language}} </li>
-      <li>Voto: {{value.vote_average}} </li>
-      <li>--------------------------------------</li>
-    </ul> -->
+    <Card 
+    v-for="card in list"
+    :key="card.id"
+    :card="card"/>
 
   </main>
 </template>
 
 <script>
+import Card from './Card.vue';
 export default {
   name: 'Main',
+  components:{
+    Card
+  },
   props:{
-    filteredList: Array
+    type: String,
+    list: Array
   },
   data(){
     return{
-      searchText:'',
-      FilmTv: true,
+      titles:{
+        'movie': 'Film trovati',
+        'tv': 'Serie tv trovate'
+      }
     }
   },
   created(){
-    /* if(this.filteredList.title === undefined){
-      this.FilmTv = false;
-    } */
+    
   }
 }
 </script>
 
 <style lang="scss" scoped>
+  main.container{
+    background-color: bisque;
+  }
 
 </style>

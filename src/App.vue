@@ -2,12 +2,21 @@
   <body>
     <div id="app">
       
-      <Header />
+      <Header @startSearch="startSearch"/>
+
+      <h1 v-if="results.movie.length === 0 && results.tv.length === 0 ">
+        Nessun risultato trovato
+      </h1>
+
       <Main 
-        @startSearchFilm="startSearchFilm"
-        @startSearchTv="startSearchTv"
-        :filteredList='filteredList'
-      />
+      v-if="results.movie.length > 0" 
+      type="movie"
+      :list="results.movie"/>
+
+      <Main
+      v-if="results.tv.length > 0" 
+      type="tv" 
+      :list="results.tv"/>
 
     </div>
   </body>
@@ -20,84 +29,64 @@ import Main from './components/Main.vue';
 
 export default {
   name: 'App',
-  
   components: {
     Header,
     Main
   },
   data(){
     return{
-      axios,
-      apiURLmovie: 'https://api.themoviedb.org/3/search/movie',
-      apiURLtv: 'https://api.themoviedb.org/3/search/tv',
+      apiUrl: 'https://api.themoviedb.org/3/search/',
       apiKey: 'c2ea226cb0288d7001760b50ed3a2e3f',
-      query: '',
-      List: []
+      results:{//results saved here
+        'movie':[],
+        'tv':[]
+      }
     }
   },
-  computed:{
-    filteredList(){
-      return this.List;
-    }
-  },
-  created(){
+  /* created(){
 
-  },
+  }, */
   methods:{
-    startSearchFilm(filmToSearch){
-      this.query = filmToSearch;
-      if(this.query !== ''){
-        axios.get(this.apiURLmovie,{
+    startSearch(obj){ 
+      this.resetResults(); //reset old results
+
+      if(obj.type === 'all'){
+        this.getAPI(obj.text, 'movie');
+        this.getAPI(obj.text, 'tv');
+      }else{
+        this.getAPI(obj.text, obj.type);
+      }
+
+    },
+
+    resetResults(){
+      this.results.movie = [];
+      this.results.tv = [];
+    },
+
+    getAPI(query, type){
+
+      if(query !== ''){
+        console.log('cerca', query);
+        axios.get(this.apiUrl+type,{
           params:{
             api_key: this.apiKey,
-            query: this.query,
+            query: query,
             language: 'it-IT'
           }
         })
-        .then(resp =>{
-          this.List = resp.data.results;
-          console.log(this.List);
+        .then(res => {
+          this.results[type] = res.data.results;
+          console.log("film: ", this.results.movie);
+          console.log("serie tv: ", this.results.tv);
         })
         .catch(err => {
           console.log(err);
+          console.log('qui errore');
         })
       }
-    },
-    startSearchTv(TvToSearch){
-      this.query = TvToSearch;
-      if(this.query !== ''){
-        axios.get(this.apiURLtv,{
-          params:{
-            api_key: this.apiKey,
-            query: this.query,
-            language: 'it-IT'
-          }
-        })
-        .then(resp =>{
-          this.List = resp.data.results;
-          console.log(this.List);
-        })
-        .catch(err => {
-          console.log(err);
-        })
-      }
-    },
-    /* startSearch(){
-      axios.get(this.apiURL,{
-        params:{
-          api_key: this.apiKey,
-          query: this.query,
-          language: 'it-IT'
-        }
-      })
-      .then(resp =>{
-        this.List = resp.data.results;
-        console.log(this.List);
-      })
-      .catch(err => {
-        console.log(err);
-      })
-    } */
+
+    }
 
   }
 
