@@ -2,7 +2,6 @@
   <main>
   
     <h1> {{titles[type]}} </h1>
-    <p>------------------------------</p>
     <div class="container">
       <Card 
       v-for="card in list"

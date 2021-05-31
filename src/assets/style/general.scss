@@ -9,22 +9,20 @@
   font-family: 'Montserrat', 'sans-serif' ;
 }
 
+body{
+  background-color: #434343;
+}
+
 header{
-  background: rgb(133, 72, 72);
+  background: black;
+  color: red;
   height: 100px;
   padding: 50px 0;
-  text-align: center;
 }
 
 main{
   background-color: rosybrown;
-  /* min-height: 100px; */
   color: white;
-}
-
-footer{
-  background: #303030;
-  min-height: 100px;
 }
 
 ul{

@@ -4,22 +4,24 @@
       
       <Header @startSearch="startSearch"/>
 
-      <main class="container" 
-      v-if="results.movie.length === 0 && results.tv.length === 0 ">
-        <h1>
+      <div class="container">
+        <h1 v-if="results.movie.length === 0 && results.tv.length === 0 ">
           Nessun risultato trovato
         </h1>
-      </main>
 
-      <Main 
-      v-if="results.movie.length > 0" 
-      type="movie"
-      :list="results.movie"/>
+        <Main 
+        v-if="results.movie.length > 0" 
+        type="movie"
+        :list="results.movie"/>
 
-      <Main
-      v-if="results.tv.length > 0" 
-      type="tv" 
-      :list="results.tv"/>
+        <Main
+        v-if="results.tv.length > 0" 
+        type="tv" 
+        :list="results.tv"/>
+
+      </div>
+
+      
 
     </div>
   </body>

@@ -27,6 +27,7 @@
                   <i class="fas fa-star"
                   v-for="star in numStars" :key="star"></i>
                 </span>
+                <span v-else> not scored </span>
               </li>
 
             </ul>
@@ -86,68 +87,55 @@ export default {
 
 <style lang="scss" scoped>
 
-  /* .box{
-    position: relative;
-    flex-basis: calc(100% / 3 - 20px);
-    .cover-img{
-      width: 100%;
-    }
-    .box-info{
-      position: absolute;
-      text-align: left;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      padding: 40px 30px;
-      background-color: rgba($color: #000000, $alpha: .3);
-    }
-  
-  }
-  .img-flag{
-    vertical-align: bottom;
-  } */
   .fa-star{
     color: yellow;
   }
 
   .flip-card {
-  background-color: transparent;
-  width: 300px;
-  height: 300px;
-  perspective: 1000px;
-}
+    margin: 10px;
+    background-color: transparent;
+    width: 300px;
+    height: 400px;
+    perspective: 1000px;
+  }
 
-.flip-card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  transition: transform 0.6s;
-  transform-style: preserve-3d;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-}
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  }
 
-.flip-card:hover .flip-card-inner {
-  transform: rotateY(180deg);
-}
+  .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+  }
 
-.flip-card-front, .flip-card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
+  .flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border: 1px solid white;
+  }
 
-.flip-card-front {
-  background-color: #bbb;
-  color: black;
-}
+  .flip-card-front {
+    background-color: #bbb;
+    color: black;
+    overflow: hidden;
+    .cover-img{
+      width: 100%;
+    }
+  }
 
-.flip-card-back {
-  background-color: black;
-  color: white;
-  transform: rotateY(180deg);
-}
+  .flip-card-back {
+    background-color: black;
+    color: white;
+    transform: rotateY(180deg);
+    margin: 80px 20x;
+  }
 
 </style>
