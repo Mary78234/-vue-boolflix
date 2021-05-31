@@ -38,14 +38,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  main{
-    text-align: center;
+  h1{
+    margin-top: 20px;
+    padding-left: 10px;
   }
   .container{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-
+    margin-top: 10px;
   }
 
 </style>
