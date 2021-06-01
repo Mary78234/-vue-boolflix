@@ -2,7 +2,7 @@
   <main>
   
     <h1> {{titles[type]}} </h1>
-    <div class="container">
+    <div class="container d-flex flex-wrap">
       <Card 
       v-for="card in list"
       :key="card.id"
@@ -41,11 +41,6 @@ export default {
   h1{
     margin-top: 20px;
     padding-left: 10px;
-  }
-  .container{
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 10px;
   }
 
 </style>

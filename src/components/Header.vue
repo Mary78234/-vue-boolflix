@@ -2,26 +2,23 @@
   <header>
 
     <!-- /container -->
-    <div class="container">
+    <div class="container d-flex justify-content-between align-items-center py-4">
 
-      <h1>Boolflix</h1>
+      <h1 class="text-uppercase">Boolflix</h1>
+
+      <!-- casella di testo da cui viene passata il titolo da cercare -->
       <input type="text" 
         v-model.trim="searchText"
         placeholder="Inserire Film da cercare"
         @keyup.enter="sendEmit('all')"
-        class="form-control">
-      <!-- <button
-      @click="sendEmit('movie')">
-        Cerca Film
-      </button>
-      <button
-      @click="sendEmit('tv')">
-        Cerca Serie TV
-      </button>
-      <button
-      @click="sendEmit('all')">
-        Cerca Serie TV
-      </button> -->
+        class="form-control float-end">
+
+      <!-- bottoni che permettono la ricerca di solo film/serie tv o entrambi -->
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-secondary" @click="sendEmit('movie')">Cerca Film</button>
+        <button type="button" class="btn btn-secondary" @click="sendEmit('tv')">Cerca Serie TV</button>
+        <button type="button" class="btn btn-secondary" @click="sendEmit('all')">Cerca entrambi</button>
+      </div>
 
     </div>
     <!-- /container -->
@@ -38,7 +35,7 @@ export default {
     }
   },
   methods:{
-    sendEmit(type){//invia tipo e titolo film da cercare
+    sendEmit(type){//invia tipo e titolo film da cercare al genitore
       this.$emit('startSearch', {text:this.searchText, type:type})
     }
   }
@@ -46,19 +43,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .container{
-    display: flex;
-    justify-content: space-between;
-    height: 100%;
-  }
+
   h1{
     font-weight: 700;
-    text-transform: uppercase;
   }
-
+  
   input{
     width: 300px;
-    height: 30px;
-    padding: 0 10px
   }
+
 </style>

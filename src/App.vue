@@ -5,7 +5,7 @@
       <Header @startSearch="startSearch"/>
 
       <div class="container">
-        <h1 v-if="results.movie.length === 0 && results.tv.length === 0 ">
+        <h1 class="mt-5" v-if="results.movie.length === 0 && results.tv.length === 0 ">
           Nessun risultato trovato
         </h1>
 
@@ -49,9 +49,25 @@ export default {
       }
     }
   },
-  /* created(){
+  created(){
+    let type = 'movie';
+    axios.get('https://api.themoviedb.org/3/movie/popular',{
+      params:{
+        api_key: this.apiKey,
+        language: 'it-IT'
+      }
+    })
+    .then(res => {
+      this.results[type] = res.data.results;
+      //console.log("film: ", this.results.movie);
+      //console.log("serie tv: ", this.results.tv);
+    })
+    .catch(err => {
+      console.log(err);
+    })
+      
 
-  }, */
+  },
   methods:{
     startSearch(obj){ 
       this.resetResults(); //reset old results
@@ -88,7 +104,6 @@ export default {
         })
         .catch(err => {
           console.log(err);
-          console.log('qui errore');
         })
       }
 
